@@ -4,7 +4,7 @@ Analyze system for incoming email
 # Function
 ### analyze(e, client)
 - **Input:**
-**e:** List of incoming emails
+**e:** Detail email
 ```python
 [
     {
@@ -17,3 +17,18 @@ Analyze system for incoming email
         ]
     }
 ]
+```
+**client:**Google client class
+```python
+client = genai.Client(api_key=gemini_api_key)
+```
+
+- **Output:**
+Json of sumary, intent and attachement_analyze
+```python
+{
+    "intent": "str"
+    "sumarize": "str"
+    "attachments": "list[str]"
+}
+```
