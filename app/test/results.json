@@ -1,0 +1,66 @@
+{
+  "generated_at": "2025-10-13T02:42:06.470316Z",
+  "results": [
+    {
+      "name": "Case có ảnh đính kèm",
+      "path": "/email_intent_finder/email",
+      "method": "POST",
+      "expected_status": 200,
+      "validation_ok": true,
+      "ok": true,
+      "status_code": 200,
+      "response": [
+        {
+          "analytics": [
+            {
+              "intent": "Góp ý",
+              "sumarize": "Người gửi góp ý về hai bức thiết kế, yêu cầu chỉnh sửa màu sắc, kiểu mặt và hối thúc hoàn thành trước Chủ Nhật.",
+              "attachments": [
+                "Đây là một bản phác thảo nhân vật nữ bằng nét vẽ đen trắng. Tệp đính kèm này liên quan trực tiếp đến nội dung email về việc góp ý thiết kế.",
+                "Đây là một hình ảnh nhân vật chibi dạng pixel art. Tệp đính kèm này cũng liên quan trực tiếp đến nội dung email về việc góp ý thiết kế."
+              ]
+            }
+          ]
+        },
+        {
+          "analytics": [
+            {
+              "intent": "Hỏi về sản phẩm",
+              "sumarize": "Người gửi hỏi về giá dịch vụ commission của người nhận.",
+              "attachments": [
+                "Email không có tệp đính kèm"
+              ]
+            }
+          ]
+        },
+        {
+          "analytics": [
+            {
+              "intent": "Khác",
+              "sumarize": "Người gửi yêu cầu Nhi trả lại cây cọ vào thứ Hai để chuẩn bị cho kỳ thi.",
+              "attachments": [
+                "Email không có tệp đính kèm"
+              ]
+            }
+          ]
+        }
+      ],
+      "error": null,
+      "passed_status_check": true
+    },
+    {
+      "name": "Test case 2: Empty email field",
+      "path": "/email_intent_finder/email",
+      "method": "POST",
+      "expected_status": 400,
+      "validation_ok": true,
+      "ok": true,
+      "status_code": 400,
+      "response": {
+        "detail": "Danh sách email trống hoặc không hợp lệ"
+      },
+      "error": null,
+      "passed_status_check": true
+    }
+  ]
+}
