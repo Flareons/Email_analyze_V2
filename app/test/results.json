@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-13T04:23:40.845975Z",
+  "generated_at": "2025-10-13T07:04:32.775015Z",
   "results": [
     {
       "name": "Case có ảnh đính kèm",
@@ -12,10 +12,10 @@
       "response": [
         {
           "intent": "Góp ý",
-          "sumarize": "Người gửi góp ý về hai bản thiết kế và yêu cầu chỉnh sửa, hoàn thành trước Chủ Nhật.",
+          "sumarize": "Người gửi không hài lòng với sản phẩm và thiết kế, yêu cầu xem xét lại vì không phù hợp với mục tiêu.",
           "attachments": [
-            "Tệp đính kèm là một bản phác thảo thiết kế nhân vật nữ. Nó liên quan trực tiếp đến nội dung email về việc góp ý thiết kế.",
-            "Tệp đính kèm là một hình ảnh nhân vật pixel art. Nó liên quan trực tiếp đến nội dung email về việc góp ý thiết kế."
+            "Tệp đính kèm là một bức vẽ phác thảo một cô gái. Bức vẽ này có liên quan đến nội dung email vì email đề cập đến việc thiết kế không tốt.",
+            "Tệp đính kèm là một hình ảnh nhân vật chibi được tạo theo phong cách pixel art. Hình ảnh này có liên quan đến nội dung email vì email đề cập đến việc thiết kế không hợp mục tiêu."
           ]
         },
         {
@@ -34,14 +34,14 @@
         },
         {
           "intent": "Hợp tác kinh doanh",
-          "sumarize": "Công ty ABC đề xuất gặp gỡ Công ty XYZ để thảo luận về hợp tác phát triển phần mềm và giải pháp quản lý dữ liệu.",
+          "sumarize": "Công ty ABC muốn hợp tác với Công ty XYZ trong các dự án phát triển phần mềm và giải pháp quản lý dữ liệu.",
           "attachments": [
             "Email không có tệp đính kèm"
           ]
         },
         {
           "intent": "Hối thúc thời gian",
-          "sumarize": "Người gửi đang hối thúc người nhận hoàn thành sản phẩm vì sắp đến hạn demo.",
+          "sumarize": "Người gửi đang hối thúc về thời gian hoàn thành sản phẩm vì sắp đến hạn demo.",
           "attachments": [
             "Email không có tệp đính kèm"
           ]
