@@ -30,12 +30,13 @@ async def analyze_email(req: EmailItems, request: Request):
     Trả về list kết quả gồm intent, sumarize và attachments (phân tích).
     """
     client = request.app.state.gemini_client
-
+    results = []
     if not req.items or len(req.items) == 0:
         raise HTTPException(status_code=400, detail="Danh sách email trống hoặc không hợp lệ")
 
     try:
-        results = analyze(e=req.items, client=client)
+        for item in req.items:
+            results.append(analyze(e=item, client=client))
     except ValueError as e:
         # Nếu hàm analyze gặp lỗi ValueError, ném HTTPException 500
         raise HTTPException(status_code=500, detail=f"Lỗi khi phân tích email: {str(e)}")
