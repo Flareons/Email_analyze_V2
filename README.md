@@ -1,5 +1,5 @@
 # Email_analyze
-Analyze system for incoming email
+Analyze system for incoming email with Gemini 2.5 Flash
 
 # Function
 ### analyze(e, client)
@@ -18,17 +18,22 @@ Analyze system for incoming email
     }
 ]
 ```
+<br>
+
 **client:**Google client class
 ```python
 client = genai.Client(api_key=gemini_api_key)
 ```
 
 - **Output:**
-Json of sumary, intent and attachement_analyze
+Json of sumary, intent, attachments analysis and token count
 ```python
 {
     "intent": "str"
     "sumarize": "str"
     "attachments": "list[str]"
-}
+},
+prompt_token,
+generate_token,
+thoughts_token
 ```
