@@ -20,7 +20,7 @@ Analyze system for incoming email with Gemini 2.5 Flash
 ```
 <br>
 
-**client:**Google client class
+**client:** Google client class
 ```python
 client = genai.Client(api_key=gemini_api_key)
 ```
