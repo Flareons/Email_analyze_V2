@@ -36,7 +36,14 @@ async def analyze_email(req: EmailItems, request: Request):
 
     try:
         for item in req.items:
-            results.append(analyze(e=item, client=client))
+            result, prompt_token, generate_token, thought_token=analyze(e=item, client=client)
+            json_result={
+                "response": result,
+                "prompt_token": prompt_token,
+                "generate_token": generate_token,
+                "thought_token": thought_token
+            }
+            results.append(json_result)
     except ValueError as e:
         # Nếu hàm analyze gặp lỗi ValueError, ném HTTPException 500
         raise HTTPException(status_code=500, detail=f"Lỗi khi phân tích email: {str(e)}")

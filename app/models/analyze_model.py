@@ -74,8 +74,8 @@ def analyze(
             "temperature":0.0
         }
     )
-    
-    return response.parsed
+
+    return response.parsed, response.usage_metadata.prompt_token_count, response.usage_metadata.candidates_token_count, response.usage_metadata.thoughts_token_count
 
     # Dưới đây là mẫu đầu vào:
 
