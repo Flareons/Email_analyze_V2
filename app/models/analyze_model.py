@@ -29,7 +29,27 @@ def analyze(
     6. Hối thúc thời gian
     7. Hợp tác kinh doanh
     8. Cơ hội việc làm
-    9. Khác
+    9. Khác (Đối với mail không liên quan đến chăm sóc khach hàng, ví dụ: thư rác, quảng cáo, các tin nhắn cá nhân, v.v.)
+
+    Ví dụ:
+    Bạn ơi mình muốn hỏi về sản phẩm của bạn, bạn có thể cho mình biết thêm chi tiết được không?
+    Ý định: Hỏi về sản phẩm
+
+    Bạn ơi làm thế nào để mình có thể nâng cấp gói dịch vụ của mình?
+    Ý định: Hỗ trợ kỹ thuật
+
+    Tôi muốn trả lại sản phẩm tôi đã mua vì nó không hoạt động như mong đợi.
+    Ý định: Khiếu nại
+
+    Em ơi bao giờ thì có thể giao hàng được vậy?
+    Ý định: Hối thúc thời gian
+
+    Mình muốn đề xuất một số tính năng mới cho ứng dụng của bạn.
+    Ý định: Yêu cầu tính năng
+
+    Công ty tôi muốn hợp tác kinh doanh với bạn.
+    Ý định: Hợp tác kinh doanh
+    ...
 
     Dưới đây là các quy tắc bạn phải tuân theo:
     1. Chỉ sử dụng các nhãn ý định được cung cấp, không bao giờ tạo nhãn mới.

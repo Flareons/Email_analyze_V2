@@ -2,9 +2,9 @@ import pytest
 import json
 import os
 import sys
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from pydantic import ValidationError
 from fastapi.testclient import TestClient
 from datetime import datetime
 from app.main import app
@@ -32,7 +32,7 @@ def save_results(results, path=RESULTS_FILE):
     """Ghi kết quả ra file JSON (ghi đè mỗi lần chạy)."""
     with open(path, "w", encoding="utf-8") as f:
         json.dump({
-            "generated_at": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now().isoformat(),
             "results": results
         }, f, ensure_ascii=False, indent=2)
 
@@ -118,7 +118,7 @@ def run_case(client, case):
 
     return result
 
-def test_run_all_cases(client: TestClient, test_cases:json):
+def test_run_all_cases(client: TestClient, test_cases:list[json]): # type: ignore
     """Chạy tất cả case, lưu results, và fail pytest nếu có case fail."""
     results = []
     any_failed = False

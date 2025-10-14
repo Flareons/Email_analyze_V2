@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-14T02:29:54.470948Z",
+  "timestamp": "2025-10-14T14:57:57.833742",
   "results": [
     {
       "name": "Case có ảnh đính kèm",
@@ -13,27 +13,27 @@
         {
           "response": {
             "intent": "Góp ý",
-            "sumarize": "Người gửi không hài lòng với sản phẩm và thiết kế, yêu cầu xem xét lại vì không phù hợp với mục tiêu.",
+            "sumarize": "Khách hàng không hài lòng với sản phẩm và hai thiết kế, yêu cầu xem xét lại.",
             "attachments": [
-              "Tệp đính kèm là một bức vẽ phác thảo một cô gái. Bức vẽ này có liên quan đến nội dung email vì email đề cập đến việc thiết kế không tốt.",
-              "Tệp đính kèm là một hình ảnh nhân vật chibi được tạo theo phong cách pixel art. Hình ảnh này có liên quan đến nội dung email vì email đề cập đến việc thiết kế không hợp mục tiêu."
+              "Tệp đính kèm là một bức vẽ phác thảo một cô gái. Bức vẽ này có vẻ là \"bức đầu\" được nhắc đến trong email, liên quan đến nội dung góp ý về thiết kế.",
+              "Tệp đính kèm là một hình ảnh nhân vật chibi phong cách pixel art. Hình ảnh này có vẻ là \"bức thứ hai\" được nhắc đến trong email, liên quan đến nội dung góp ý về thiết kế."
             ]
           },
-          "prompt_token": 987,
-          "generate_token": 142,
-          "thought_token": 598
+          "prompt_token": 1195,
+          "generate_token": 147,
+          "thought_token": 1155
         },
         {
           "response": {
             "intent": "Hỏi về sản phẩm",
-            "sumarize": "Người dùng muốn biết giá của sản phẩm A từ công ty.",
+            "sumarize": "Người dùng hỏi về giá của sản phẩm A của công ty.",
             "attachments": [
               "Email không có tệp đính kèm"
             ]
           },
-          "prompt_token": 443,
+          "prompt_token": 651,
           "generate_token": 57,
-          "thought_token": 384
+          "thought_token": 467
         },
         {
           "response": {
@@ -43,33 +43,33 @@
               "Email không có tệp đính kèm"
             ]
           },
-          "prompt_token": 451,
+          "prompt_token": 659,
           "generate_token": 62,
-          "thought_token": 327
+          "thought_token": 249
         },
         {
           "response": {
             "intent": "Hợp tác kinh doanh",
-            "sumarize": "Công ty ABC muốn hợp tác với Công ty XYZ trong các dự án phát triển phần mềm và giải pháp quản lý dữ liệu.",
+            "sumarize": "Công ty ABC muốn hợp tác với Công ty XYZ trong các dự án phát triển phần mềm và giải pháp quản lý dữ liệu, đề xuất một cuộc gặp để thảo luận.",
             "attachments": [
               "Email không có tệp đính kèm"
             ]
           },
-          "prompt_token": 630,
-          "generate_token": 70,
-          "thought_token": 485
+          "prompt_token": 838,
+          "generate_token": 79,
+          "thought_token": 459
         },
         {
           "response": {
             "intent": "Hối thúc thời gian",
-            "sumarize": "Người gửi đang hối thúc người nhận hoàn thành sản phẩm vì sắp đến hạn demo.",
+            "sumarize": "Người gửi hối thúc người nhận hoàn thành sản phẩm vì sắp đến hạn demo.",
             "attachments": [
               "Email không có tệp đính kèm"
             ]
           },
-          "prompt_token": 447,
-          "generate_token": 62,
-          "thought_token": 405
+          "prompt_token": 655,
+          "generate_token": 61,
+          "thought_token": 268
         }
       ],
       "error": null,
