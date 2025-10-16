@@ -3,3 +3,8 @@ google-genai
 pytest
 pytest-asyncio
 httpx
+sqlalchemy
+sqlmodel
+pandas
+pydantic
+pymysql

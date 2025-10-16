@@ -5,4 +5,5 @@ app/__pycache__/
 app/test/__pycache__/
 app/routes/__pycache__/
 app/models/__pycache__/
-
+app/utils/__pycache__/
+app/db/__pycache__/

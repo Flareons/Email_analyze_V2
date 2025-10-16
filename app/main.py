@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from google import genai
 
 from app.routes import email_intent_finder
+from app.db.base import create_db_and_tables
 
 # Load biến môi trường từ file .env
 load_dotenv()
@@ -20,6 +21,7 @@ async def lifespan(app: FastAPI):
 
     # Khởi tạo Gemini client và gắn vào state của app
     app.state.gemini_client = genai.Client(api_key=gemini_api_key)
+    create_db_and_tables()
     yield
 
 # Khởi tạo ứng dụng FastAPI

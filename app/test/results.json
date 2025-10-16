@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-14T14:57:57.833742",
+  "timestamp": "2025-10-15T08:21:56.529761",
   "results": [
     {
       "name": "Case có ảnh đính kèm",
@@ -26,38 +26,38 @@
         {
           "response": {
             "intent": "Hỏi về sản phẩm",
-            "sumarize": "Người dùng hỏi về giá của sản phẩm A của công ty.",
+            "sumarize": "Người dùng muốn hỏi về giá của sản phẩm A từ công ty.",
             "attachments": [
               "Email không có tệp đính kèm"
             ]
           },
           "prompt_token": 651,
-          "generate_token": 57,
-          "thought_token": 467
+          "generate_token": 39,
+          "thought_token": 626
         },
         {
           "response": {
             "intent": "Cơ hội việc làm",
-            "sumarize": "Người gửi hỏi về cơ hội việc làm và yêu cầu cung cấp mô tả công việc.",
+            "sumarize": "Người gửi hỏi về cơ hội việc làm và yêu cầu cung cấp mô tả công việc nếu công ty còn tuyển dụng.",
             "attachments": [
-              "Email không có tệp đính kèm"
+              "Tệp đính kèm là một hình ảnh pixel art của một nhân vật hoạt hình chibi. Hình ảnh này không liên quan đến nội dung email về cơ hội việc làm."
             ]
           },
-          "prompt_token": 659,
-          "generate_token": 62,
-          "thought_token": 249
+          "prompt_token": 907,
+          "generate_token": 94,
+          "thought_token": 397
         },
         {
           "response": {
             "intent": "Hợp tác kinh doanh",
-            "sumarize": "Công ty ABC muốn hợp tác với Công ty XYZ trong các dự án phát triển phần mềm và giải pháp quản lý dữ liệu, đề xuất một cuộc gặp để thảo luận.",
+            "sumarize": "Công ty ABC muốn đề xuất hợp tác với Công ty XYZ trong các dự án phát triển phần mềm và giải pháp quản lý dữ liệu.",
             "attachments": [
               "Email không có tệp đính kèm"
             ]
           },
           "prompt_token": 838,
-          "generate_token": 79,
-          "thought_token": 459
+          "generate_token": 72,
+          "thought_token": 541
         },
         {
           "response": {
