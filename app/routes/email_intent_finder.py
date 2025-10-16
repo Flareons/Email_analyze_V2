@@ -1,20 +1,19 @@
 # app/routers/email_intent_finder.py
 
 from typing import Dict, List, Optional
-
 from fastapi import APIRouter, Request, HTTPException
 from pydantic import BaseModel
-
 from app.models.analyze_model import analyze
 from app.db.base import SessionDep, Email_Table
 from datetime import datetime
 
-
+# Định nghĩa router cho email intent finder
 router = APIRouter(
     prefix="/email_intent_finder",
     tags=["Email intent analysis"],
 )
 
+# Định nghĩa các model Pydantic cho request và response
 class EmailRequest(BaseModel):
     email: Optional[str] = None
     attachment: Optional[List[Dict]] = None
@@ -22,10 +21,12 @@ class EmailRequest(BaseModel):
 class EmailItems(BaseModel):
     items: List[EmailRequest]
 
+# Root endpoint để kiểm tra API có hoạt động không
 @router.get("/")
 async def root():
     return {"message": "Email Intent Finder API is running"}
 
+# Endpoint chính để phân tích email và trích xuất intent
 @router.post("/email")
 async def analyze_email(req: EmailItems, request: Request, Session: SessionDep):
     """
@@ -33,6 +34,7 @@ async def analyze_email(req: EmailItems, request: Request, Session: SessionDep):
     Trả về list kết quả gồm intent, sumarize và attachments (phân tích).
     """
 
+    # Lấy Gemini client từ state của ứng dụng
     client = request.app.state.gemini_client
 
     results = []
@@ -41,7 +43,10 @@ async def analyze_email(req: EmailItems, request: Request, Session: SessionDep):
         raise HTTPException(status_code=400, detail="Danh sách email trống hoặc không hợp lệ")
 
     try:
+
         for item in req.items:
+
+            # Xử lý trường hợp email và attachment đều None
             if item.email is None and item.attachment is None:
                 timestamp = datetime.now().isoformat()
                 intent = "Không xác định"
@@ -79,9 +84,9 @@ async def analyze_email(req: EmailItems, request: Request, Session: SessionDep):
                     "timestamp": timestamp
                 })
                 continue
-
+            
+            # Gọi hàm analyze để phân tích email và attachments
             result, prompt_token, generate_token, thought_token, timestamp=analyze(e=item, client=client)
-
             total_token = prompt_token + generate_token + thought_token
 
             email_record = Email_Table(**{
