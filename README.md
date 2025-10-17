@@ -122,7 +122,7 @@ pip install -r requirements.txt
 - **Test với Postman:**
 <br>
 Thêm file .env rồi chạy sever với uvicorn và đưa thông tin vào API với cấu trúc json đã cung cấp ở phần API bên trên<br>
-```cmd
+```bash
 uvicorn app.main:app --reload 
 ```
 
@@ -130,7 +130,7 @@ uvicorn app.main:app --reload
 <br>
 Thêm file .env và chạy thư viện pytest
 <br>
-```cmd
+```bash
 pytest app/test/test_api_email.py
 ```
 <br>
