@@ -112,3 +112,26 @@ Thêm file **.env** chứa các trường sau đây:<br>
 **DB_HOST:** Địa chỉ host của database<br>
 **DB_PORT:** Cổng Port của database<br>
 **DB_NAME:** Tên của database<br>
+
+# Cách test:
+**Cài các thư viện của repo:**
+```cmd
+pip install -r requirements.txt
+```
+
+- **Test với Postman:**
+<br>
+Thêm file .env rồi chạy sever với uvicorn và đưa thông tin vào API với cấu trúc json đã cung cấp ở phần API bên trên<br>
+```cmd
+uvicorn app.main:app --reload 
+```
+
+- **Unit test:**
+<br>
+Thêm file .env và chạy thư viện pytest
+<br>
+```cmd
+pytest app/test/test_api_email.py
+```
+<br>
+Kết quả test sẽ ở file results.json<br>
