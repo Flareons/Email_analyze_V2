@@ -118,22 +118,23 @@ Thêm file **.env** chứa các trường sau đây:<br>
 ```cmd
 pip install -r requirements.txt
 ```
-```markdown
-- **Test với Postman:**
 
-Thêm file .env rồi chạy sever với uvicorn và đưa thông tin vào API với cấu trúc json đã cung cấp ở phần API bên trên
+- **Test với Postman:**
+<br>
+Thêm file .env rồi chạy sever với uvicorn và đưa thông tin vào API với cấu trúc json đã cung cấp ở phần API bên trên<br>
 
 ```bash
 uvicorn app.main:app --reload 
 ```
 
-```markdown
-- **Unit test:**
 
-Thêm file .env và chạy thư viện pytest
+- **Unit test:**
+<br>
+Thêm file .env và chạy thư viện pytest<br>
 
 ```bash
 pytest app/test/test_api_email.py
 ```
 
-Kết quả test sẽ ở file results.json
+<br>
+Kết quả test sẽ ở file results.json<br>
