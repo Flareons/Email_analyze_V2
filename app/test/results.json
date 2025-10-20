@@ -1,77 +1,27 @@
 {
-  "timestamp": "2025-10-17T09:43:31.920515",
+  "timestamp": "2025-10-20T14:17:21.422943",
   "results": [
     {
-      "name": "Case có ảnh đính kèm",
+      "name": "Case có nhiều ảnh đính kèm",
       "path": "/email_intent_finder/email",
       "method": "POST",
       "expected_status": 200,
       "validation_ok": true,
       "ok": true,
       "status_code": 200,
-      "response": [
-        {
-          "response": {
-            "intent": "Góp ý",
-            "sumarize": "Khách hàng không hài lòng với hai thiết kế được cung cấp, yêu cầu xem xét lại vì chúng không đạt yêu cầu và không phù hợp mục tiêu.",
-            "attachments": [
-              "Đây là một bản vẽ phác thảo cô gái tóc ngắn. Hình ảnh này liên quan đến email vì email đề cập đến thiết kế đầu tiên không tốt.",
-              "Đây là một nhân vật chibi dạng pixel art. Hình ảnh này liên quan đến email vì email nói thiết kế thứ hai không hợp mục tiêu."
-            ]
-          },
-          "prompt_token": 1306,
-          "generate_token": 109,
-          "thought_token": 1226
+      "response": {
+        "response": {
+          "intent": "Góp ý",
+          "sumarize": "Người gửi không hài lòng với hai thiết kế sản phẩm và yêu cầu bên nhận xem xét lại ngay.",
+          "attachments": [
+            "Đây là một bản vẽ phác thảo cô gái. Bức ảnh này liên quan đến nội dung email về thiết kế sản phẩm.",
+            "Đây là một nhân vật pixel art. Bức ảnh này liên quan đến nội dung email về thiết kế sản phẩm."
+          ]
         },
-        {
-          "response": {
-            "intent": "Hỏi về sản phẩm",
-            "sumarize": "Người gửi hỏi về giá sản phẩm A của công ty.",
-            "attachments": [
-              "Email không có tệp đính kèm"
-            ]
-          },
-          "prompt_token": 762,
-          "generate_token": 56,
-          "thought_token": 83
-        },
-        {
-          "response": {
-            "intent": "Cơ hội việc làm",
-            "sumarize": "Người gửi hỏi về cơ hội việc làm và yêu cầu cung cấp mô tả công việc.",
-            "attachments": [
-              "Tệp đính kèm là một hình ảnh pixel art của một nhân vật hoạt hình. Hình ảnh này không liên quan đến nội dung email."
-            ]
-          },
-          "prompt_token": 1018,
-          "generate_token": 82,
-          "thought_token": 681
-        },
-        {
-          "response": {
-            "intent": "Hợp tác kinh doanh",
-            "sumarize": "Công ty ABC đề xuất hợp tác với Công ty XYZ trong các dự án phát triển phần mềm và giải pháp quản lý dữ liệu.",
-            "attachments": [
-              "Email không có tệp đính kèm"
-            ]
-          },
-          "prompt_token": 949,
-          "generate_token": 71,
-          "thought_token": 694
-        },
-        {
-          "response": {
-            "intent": "Hối thúc thời gian",
-            "sumarize": "Người gửi hối thúc người nhận hoàn thành sản phẩm vì sắp đến hạn demo.",
-            "attachments": [
-              "Email không có tệp đính kèm"
-            ]
-          },
-          "prompt_token": 766,
-          "generate_token": 61,
-          "thought_token": 291
-        }
-      ],
+        "prompt_token": 1353,
+        "generate_token": 108,
+        "thought_token": 973
+      },
       "error": null,
       "passed_status_check": true
     },
@@ -97,20 +47,42 @@
       "validation_ok": true,
       "ok": true,
       "status_code": 200,
-      "response": [
-        {
-          "response": {
-            "intent": "Khác",
-            "sumarize": "Người dùng gửi một hình ảnh thẻ bài Pokemon TCG có nhân vật Iono và hiệu ứng trò chơi.",
-            "attachments": [
-              "Tệp đính kèm là một thẻ bài Pokemon TCG có tên Iono, thuộc loại Supporter/Trainer. Thẻ bài mô tả nhân vật Iono cùng các món tráng miệng và Pokemon. Khó xác định nội dung liên quan do không có email."
-            ]
-          },
-          "prompt_token": 1254,
-          "generate_token": 95,
-          "thought_token": 972
-        }
-      ],
+      "response": {
+        "response": {
+          "intent": "Hỗ trợ kỹ thuật",
+          "sumarize": "Người dùng gửi kèm ảnh lỗi tải ảnh và một thẻ bài game.",
+          "attachments": [
+            "Tệp đính kèm là một thẻ bài Pokemon TCG Iono, loại Supporter Trainer. Khó xác định nội dung liên quan do không có email.",
+            "Tệp đính kèm hiển thị thông báo lỗi 'Không thể tải ảnh' khi tải phiên bản chất lượng cao hơn. Có thể liên quan đến ý định người dùng."
+          ]
+        },
+        "prompt_token": 1301,
+        "generate_token": 120,
+        "thought_token": 1320
+      },
+      "error": null,
+      "passed_status_check": true
+    },
+    {
+      "name": "Test case 4: Irrelevant picture",
+      "path": "/email_intent_finder/email",
+      "method": "POST",
+      "expected_status": 200,
+      "validation_ok": true,
+      "ok": true,
+      "status_code": 200,
+      "response": {
+        "response": {
+          "intent": "Cơ hội việc làm",
+          "sumarize": "Người gửi hỏi về cơ hội việc làm và yêu cầu cung cấp mô tả công việc.",
+          "attachments": [
+            "Tệp đính kèm là hình ảnh nhân vật anime pixel art. Nó không liên quan đến nội dung email."
+          ]
+        },
+        "prompt_token": 1065,
+        "generate_token": 76,
+        "thought_token": 562
+      },
       "error": null,
       "passed_status_check": true
     }

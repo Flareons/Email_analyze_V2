@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")
 from fastapi.testclient import TestClient
 from datetime import datetime
 from app.main import app
-from app.routes.email_intent_finder import EmailItems
+from app.routes.email_intent_finder import EmailRequest
 
 TEST_CASES_FILE = os.path.join(os.path.dirname(__file__), "test_case.json")
 RESULTS_FILE = os.path.join(os.path.dirname(__file__), "results.json")
@@ -66,7 +66,7 @@ def run_case(client, case):
 
     # 1) Validate input JSON theo EmailRequest
     payload = json_body or {}
-    EmailItems(**payload)
+    EmailRequest(**payload)
     result["validation_ok"] = True
 
     # 2) Gọi API
@@ -118,12 +118,14 @@ def run_case(client, case):
 
     return result
 
-def test_run_all_cases(client: TestClient, test_cases:list[json]): # type: ignore
+def test_run_all_cases(client: TestClient, test_cases:json): # type: ignore
     """Chạy tất cả case, lưu results, và fail pytest nếu có case fail."""
     results = []
     any_failed = False
     for case in test_cases:
         r = run_case(client, case)
+        print(r)
+        print(RESULTS_FILE)
         results.append(r)
         if not (r.get("validation_ok") and r.get("ok")):
             any_failed = True

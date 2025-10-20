@@ -13,13 +13,15 @@ class Email_analyze(BaseModel):
 #     analytics: list[Emeil_analyze]
 
 def analyze(
-        e, client):
+        email, attachment,
+         client):
     prompt = f"""
     Bạn là một bộ phân loại email và bạn sẽ phải thực hiện các nhiệm vụ bến dưới đây.
     Nhiệm vụ:
     Đọc các tệp đính kèm (nếu có) bên trong các email được gửi đến và cung cấp thông tin CHI TIẾT về nội dung đính kèm đồng thời trả lời xem file đính kèm có liên quan đến email hay không với nhiều nhất 2 câu và dưới 20 từ.
     Đọc email (nếu có) và tệp đính kèm (nếu có) được gửi đến và TÓM TẮT Ý CHÍNH của email hoặc tập đính kèm với "ngôi thứ ba trong một đoạn văn ngắn gọn không quá 20 từ".
     Nếu có tệp đính kèm khó xác định vấn đề, hãy trả về phân tích tệp đính kèm và nói thêm rằng "Khó xác định nội dung liên quan do không có email".
+    Nếu vẫn có thế xác định được ý định của người dùng qua tệp đính kèm, hãy trả về phân tích tệp đính kèm bình thường đồng thời nói "Có thể liên quan đến ý định người dùng".
     Nếu không có tệp đính kèm, hãy trả về "Email không có tệp đính kèm" trong phần phân tích tệp đính kèm.
     Đọc email (nếu có) và tệp đính kèm (nếu có) được gửi đến và chọn xem ý định của người dùng dựa trên các nhãn ý định của người dùng được cung cấp.
 
@@ -67,13 +69,13 @@ def analyze(
 
     parts.append(Part.from_text(text=prompt))
 
-    if e.email:
+    if email:
 
-        parts.append(Part.from_text(text=e.email))
+        parts.append(Part.from_text(text=email))
 
-    if e.attachment:
+    if attachment:
 
-        for b64_img in e.attachment:
+        for b64_img in attachment:
 
             if b64_img.get("mime_type")=="image/png" or b64_img.get("mime_type")=="image/jpeg":
 
@@ -107,7 +109,7 @@ def analyze(
         config={
             "response_mime_type":"application/json",
             "response_schema": Email_analyze,
-            "temperature":0.0
+            "temperature":0.2
         }
     )
 
