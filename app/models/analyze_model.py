@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from google.genai.types import Part
 from app.utils.b64_to_bytes import b64_to_bytes
 from app.utils.url_handle import url_to_bytes
+from app.utils.excel_handler import excel_to_bytes  
 from datetime import datetime
 
 class Email_analyze(BaseModel):
@@ -97,6 +98,12 @@ def analyze(
                 img_bytes, mime_type = url_to_bytes(b64_img.get("link"))
 
                 parts.append(Part.from_bytes(data=img_bytes, mime_type=mime_type))
+
+            elif b64_img.get("mime_type")=="xlsx":
+
+                excel_bytes = excel_to_bytes(b64_img.get("base_64_str"))
+
+                parts.append(Part.from_bytes(data=excel_bytes, mime_type="text/csv"))
 
 
     else:

@@ -8,3 +8,5 @@ sqlmodel
 pandas
 pydantic
 pymysql
+cryptography
+openpyxl

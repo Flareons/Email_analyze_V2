@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-20T14:17:21.422943",
+  "timestamp": "2025-10-21T08:42:05.997702",
   "results": [
     {
       "name": "Case có nhiều ảnh đính kèm",
@@ -11,16 +11,16 @@
       "status_code": 200,
       "response": {
         "response": {
-          "intent": "Góp ý",
-          "sumarize": "Người gửi không hài lòng với hai thiết kế sản phẩm và yêu cầu bên nhận xem xét lại ngay.",
+          "intent": "Khiếu nại",
+          "sumarize": "Người gửi phàn nàn về hai thiết kế, cho rằng bức đầu không tốt và bức thứ hai không phù hợp với mục tiêu của họ.",
           "attachments": [
-            "Đây là một bản vẽ phác thảo cô gái. Bức ảnh này liên quan đến nội dung email về thiết kế sản phẩm.",
-            "Đây là một nhân vật pixel art. Bức ảnh này liên quan đến nội dung email về thiết kế sản phẩm."
+            "Hình ảnh là một bản vẽ phác thảo cô gái tóc ngắn. Nó liên quan trực tiếp đến nội dung email về thiết kế.",
+            "Hình ảnh là một nhân vật pixel art dễ thương. Nó liên quan trực tiếp đến nội dung email về thiết kế."
           ]
         },
         "prompt_token": 1353,
-        "generate_token": 108,
-        "thought_token": 973
+        "generate_token": 118,
+        "thought_token": 731
       },
       "error": null,
       "passed_status_check": true
@@ -49,16 +49,15 @@
       "status_code": 200,
       "response": {
         "response": {
-          "intent": "Hỗ trợ kỹ thuật",
-          "sumarize": "Người dùng gửi kèm ảnh lỗi tải ảnh và một thẻ bài game.",
+          "intent": "Không xác định",
+          "sumarize": "Người dùng đã gửi một thẻ bài Pokemon \"Iono Supporter TRAINER\" hiển thị nhân vật anime và hiệu ứng trò chơi.",
           "attachments": [
-            "Tệp đính kèm là một thẻ bài Pokemon TCG Iono, loại Supporter Trainer. Khó xác định nội dung liên quan do không có email.",
-            "Tệp đính kèm hiển thị thông báo lỗi 'Không thể tải ảnh' khi tải phiên bản chất lượng cao hơn. Có thể liên quan đến ý định người dùng."
+            "Đây là một thẻ bài Pokemon \"Iono Supporter TRAINER\" với hình ảnh nhân vật anime, Pikachu và Eevee, cùng mô tả hiệu ứng trò chơi. Khó xác định nội dung liên quan do không có email."
           ]
         },
         "prompt_token": 1301,
-        "generate_token": 120,
-        "thought_token": 1320
+        "generate_token": 108,
+        "thought_token": 2522
       },
       "error": null,
       "passed_status_check": true
@@ -74,14 +73,14 @@
       "response": {
         "response": {
           "intent": "Cơ hội việc làm",
-          "sumarize": "Người gửi hỏi về cơ hội việc làm và yêu cầu cung cấp mô tả công việc.",
+          "sumarize": "Người gửi hỏi về cơ hội việc làm và yêu cầu mô tả công việc.",
           "attachments": [
-            "Tệp đính kèm là hình ảnh nhân vật anime pixel art. Nó không liên quan đến nội dung email."
+            "Tệp đính kèm là một hình ảnh pixel art mô tả một nhân vật anime nữ với mái tóc xanh nhạt, trang phục màu xanh đậm và trắng, đội mũ. Hình ảnh này không liên quan đến yêu cầu tuyển dụng trong email."
           ]
         },
         "prompt_token": 1065,
-        "generate_token": 76,
-        "thought_token": 562
+        "generate_token": 101,
+        "thought_token": 1063
       },
       "error": null,
       "passed_status_check": true
