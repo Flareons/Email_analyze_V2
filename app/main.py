@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from google import genai
 
 from app.routes import email_intent_finder
+from app.routes import report_analyze
 from app.db.base import create_db_and_tables
 
 # Load biến môi trường từ file .env
@@ -29,3 +30,4 @@ app = FastAPI(lifespan=lifespan)
 
 # Đăng ký router
 app.include_router(email_intent_finder.router)
+app.include_router(report_analyze.router)
