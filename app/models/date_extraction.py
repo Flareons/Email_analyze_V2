@@ -3,12 +3,13 @@ from pydantic import BaseModel
 class Date_Model(BaseModel):
     month: list[str]
     year: list[str]
-    intnet: str
+    intent: str
+    # select_column: list[str]
 
 def date_extraction(user_request: str, date_range:list, client) -> dict:
     prompt = f"""
     Bạn là một chuyện gia phân tích dữ liệu
-    Dựa trên thông tin yêu cầu của người dùng
+    Dựa trên thông tin yêu cầu của người dùng, schema, column, metadata và khoảng thời gian của dữ liệu
     Hãy chọn ra khoảng thời gian cần lấy trong dữ liệu theo yêu cầu đó
     Đồng thời hãy trả về ý định của người dùng trong câu hỏi xem muốn so sánh tổng thể hay so sánh từng sản phẩm theo thời gian với 1 từ ngắn gọn là ["Tổng thể", "Theo sản phẩm"]
 
@@ -21,7 +22,7 @@ def date_extraction(user_request: str, date_range:list, client) -> dict:
     Bạn cần trả về một file json với cấu trúc sau:
     month: các tháng được chọn theo yêu cầu của người dùng (list[str])
     year: năm được chọn theo yêu cầu của người dùng (list[str])
-    intnet: ý định của người dùng trong câu hỏi (str)
+    intent: ý định của người dùng trong câu hỏi (str)
 
     Ví dụ:
     Giả sử thời gian trong khoảng tháng 1-2024 đến 12-2025
@@ -53,3 +54,10 @@ def date_extraction(user_request: str, date_range:list, client) -> dict:
     )
 
     return response.parsed
+
+
+# Schema data:
+#     {schema}
+
+# Metadata:
+# {metadata}

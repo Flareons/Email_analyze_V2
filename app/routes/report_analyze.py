@@ -44,7 +44,7 @@ async def analyze_report(req: InputRequest, request: Request):
     # Clean and preprocess data
     excel_df = excel_df.dropna()
 
-    # Remove outliers
+    # Remove outliers (Xem lại)
     excel_categorical = excel_df["Product_Category"].unique()
     for i in excel_categorical:
         subset = excel_df[excel_df["Product_Category"] == i]
@@ -55,8 +55,30 @@ async def analyze_report(req: InputRequest, request: Request):
     date_range = excel_df["Date"].dt.date.unique()
     user_request = req.input_data
 
+    # schema = {
+    #     excel_df.columns[0]: "Tên công ty",
+    #     excel_df.columns[1]: "Ngày giao dịch",
+    #     excel_df.columns[2]: "Danh mục sản phẩm",
+    #     excel_df.columns[3]: "Kênh bán hàng",
+    #     excel_df.columns[4]: "Số lượng sản phẩm bán được",
+    #     excel_df.columns[5]: "Giá mỗi đơn vị sản phẩm",
+    #     excel_df.columns[6]: "Doanh thu từ giao dịch",
+    #     excel_df.columns[7]: "Chi phí của giao dịch",
+    #     excel_df.columns[8]: "Lợi nhuận giao dịch",
+    #     excel_df.columns[9]: "Chi phí marketing cho giao dịch",
+    #     excel_df.columns[10]: "ID khách hàng",
+    #     excel_df.columns[11]: "Phương thức thanh toán",
+    #     excel_df.columns[12]: "Mức giảm giá áp dụng"
+    # }
+    # schema = json.dumps(schema)
+    # metadata = excel_df.head(10).to_json(orient='records')
+
     # Trích xuất thông tin thời gian
     date_info = date_extraction(user_request, sorted(date_range), client)
+
+    print(date_info.month)
+    print(date_info.year)
+    print(date_info.intent)
 
     # Xử lý HTTP Exception với đầu vào không hợp lệ
     if date_info.month[0]=="Không xác định" and date_info.year[0]=="Không xác định":
@@ -82,8 +104,3 @@ async def analyze_report(req: InputRequest, request: Request):
     }
 
     return output
-
-
-
-
-
