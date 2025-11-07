@@ -1,140 +1,136 @@
-# Email_analyze
-Analyze system for incoming email with Gemini 2.5 Flash with MySQL database
+# 📊 Report Data Analysis API (Demo)
 
-# Main function
-### analyze(e, client)
-- **Input:**<br>
-**e:** Detail email
-```python
-[
-    {
-        "email": "Details email",
-        "attachments": [
-            {
-                "mime_type": "attachment data type",
-                "b64_str": "encoded base64 string data"
-            }
-        ]
-    }
-]
-```
-<br>
+## 🧭 Giới thiệu
 
-**client:** Google client class
-```python
-client = genai.Client(api_key=gemini_api_key)
-```
+Dự án này là một **API demo** được xây dựng bằng **FastAPI**, có chức năng:
+- Nhận file dữ liệu kinh doanh (Excel, mã hóa Base64);
+- Làm sạch và loại bỏ ngoại lệ (outlier);
+- Tính toán các **metrics tài chính, marketing và khách hàng** theo thời gian;
+- Trích xuất thông tin thời gian từ yêu cầu người dùng;
+- (Trong bản chính thức) sinh biểu đồ trực quan và insights bằng mô hình ngôn ngữ (LLM).
 
-- **Output:**
-Json of sumary, intent, attachments analysis and token count
-```python
+> ⚠️ Phiên bản này **chỉ dùng cho mục đích demo**, chưa bao gồm phần thực thi `exec` sinh biểu đồ.
+
+---
+
+## ⚙️ Cấu trúc chính
+
+### **1. Endpoint `/report/analyze`**
+
+**Phương thức:** `POST`  
+**Mô tả:** Xử lý file Excel từ người dùng, trích xuất khoảng thời gian, tính toán metrics và chuẩn bị dữ liệu cho bước trực quan hóa.
+
+#### 🧩 Input
+```json
 {
-    "intent": "str"
-    "sumarize": "str"
-    "attachments": "list[str]"
-},
-prompt_token,
-generate_token,
-thoughts_token
+  "input_data": "Phân tích doanh thu quý 3 năm 2024",
+  "excel_base64": "<chuỗi base64 của file Excel>"
+}
 ```
 
-# API module
-### email_intent_finder.py
+#### 🔁 Output
+```json
+{
+  "visualize_b64_str": "<biểu đồ mã hóa Base64>",
+  "mime-type": "image/png",
+  "insights": "Doanh thu quý 3 tăng 12% so với quý 2, chủ yếu nhờ nhóm sản phẩm A và B."
+}
+```
 
-Module này chứa API trích xuất thông tin chính của email bao gồm: "Ý định của người dùng **intent**", "Tóm tắt **sumarize**" và "Phân tích tệp đính kèm **attachments**". Bằng cách gọi đến mô hình Gemini thông qua hàm **analyze(e, client)**<br>
+> Trong bản demo này, phần `visualize_b64_str` và `insights` là placeholder.
 
-- **Prefix:** **/email_intent_finder/email**
+---
 
-- **Base model:** 
+## 🧮 File `metrics_cal.py`
+
+Module này định nghĩa hàm:
+
 ```python
-class EmailRequest(BaseModel):
-    email: Optional[str] = None
-    attachment: Optional[List[Dict]] = None
-
-class EmailItems(BaseModel):
-    items: List[EmailRequest]
+def metrics_calculate(df: pd.DataFrame, date_info: Date_Model) -> dict
 ```
 
-- **Method**: POST
+### 🎯 Chức năng
+Tính toán các chỉ số kinh doanh quan trọng (metrics) dựa trên dữ liệu đã làm sạch và thông tin thời gian được mô hình trích xuất.
 
-- **Input:**
-```python
-    analyze_email(req: EmailItems, request: Request, Session: SessionDep)
+### 📘 Logic chính
+- Tạo bản sao dữ liệu (`df_dup`)
+- Lọc dữ liệu theo khoảng thời gian (`date_info.month`, `date_info.year`)
+- Gom nhóm dữ liệu theo `YearMonth`
+- Tính toán các chỉ số theo:
+  - **Tổng thể (intent = "Tổng thể")**
+  - **Theo sản phẩm (intent = "Theo sản phẩm")**
+
+---
+
+## 📊 Các chỉ số được tính
+
+| Nhóm | Chỉ số | Mô tả |
+|------|--------|-------|
+| **Doanh thu (Revenue)** | `total_revenue` | Tổng doanh thu |
+| **Chi phí (Cost)** | `total_product_cost`, `total_marketing_cost`, `total_discount`, `total_cost` | Tổng chi phí sản xuất, marketing và khuyến mãi |
+| **Lợi nhuận (Profit)** | `total_profit`, `profit_margin` | Tổng lợi nhuận và biên lợi nhuận |
+| **Bán hàng (Sales)** | `online_order_rate`, `offline_order_rate` | Tỷ lệ đơn hàng online/offline |
+| **Thanh toán (Payment)** | `card_rate`, `e_wallet_rate`, `cash_rate` | Tỷ lệ phương thức thanh toán |
+| **Khách hàng (Customer)** | `customer_count` | Số lượng khách hàng duy nhất |
+| **Theo sản phẩm (Product)** | `total_quantity` | Số lượng sản phẩm bán được |
+
+---
+
+## 📁 Cấu trúc thư mục
+
 ```
-<br>
-
-**req:EmailItems:** request đầu vào phải chứa một json thỏa mãn điều kiện của **EmailItem**
-```python
-[
-    {
-        'email': "Nội dung email"
-        'attachment': [
-            # Nếu là đính kèm ảnh
-            {
-                'mime_type': "Kiểu dữ liệu của tệp đính kèm"
-                'base_64_str': "Ảnh qua mail thường để dạng base 64 string"
-            }
-            # Nếu là đính kèm link
-            {
-                'mime_type': "url",
-                'link': "link đính kèm"
-            }
-        ] 
-    }
-]
-```
-
-**request: Request:** chứa các request HTTPS và cả thông tin khởi tạo lifespan của ứng dụng FastAPI.<br>
-
-**Session:SessionDep:** Session annotation của database để sử dụng trong các route.<br>
-
-- **Output:** Trả về list chứa thông tin phân tích của email gửi tới và lượng token sử dụng<br>
-```python
-[
-    {
-        'response': {
-            'intent': str,
-            'sumarize': str,
-            'attachments': str
-        },
-        "prompt_token": "Số token của prompt",
-        "generate_token": "Số token của câu trả lời",
-        "thought_token": "Số token sử dụng để thingking"
-    }
-]
+app/
+├── api/
+│   └── report_api.py              # API /report/analyze
+├── models/
+│   ├── date_extraction.py         # Mô hình trích xuất thông tin thời gian từ prompt
+│   └── visual_insights_model.py   # Mô hình sinh biểu đồ & insights
+├── utils/
+│   ├── excel_handler.py           # Giải mã base64 → bytes → DataFrame
+│   ├── remove_outlier.py          # Hàm loại bỏ ngoại lệ
+│   └── metrics_cal.py             # Tính toán metrics
+└── main.py                        # Entry point (chạy FastAPI)
 ```
 
-# Tùy chỉnh:
-Thêm file **.env** chứa các trường sau đây:<br>
-**GENAI_API_KEY:** API key của gemini<br>
-**DB_USERNAME:** Tên tài khoản truy của database<br>
-**DB_PASSWORD:** Password để truy cập database<br>
-**DB_HOST:** Địa chỉ host của database<br>
-**DB_PORT:** Cổng Port của database<br>
-**DB_NAME:** Tên của database<br>
+---
 
-# Cách test:
-**Cài các thư viện của repo:**
-```cmd
-pip install -r requirements.txt
-```
+## 🚀 Cách chạy demo
 
-- **Test với Postman:**
-<br>
-Thêm file .env rồi chạy sever với uvicorn và đưa thông tin vào API với cấu trúc json đã cung cấp ở phần API bên trên<br>
-
+### 1️⃣ Cài đặt môi trường
 ```bash
-uvicorn app.main:app --reload 
+pip install fastapi uvicorn pandas openpyxl
 ```
 
-
-- **Unit test:**
-<br>
-Thêm file .env và chạy thư viện pytest<br>
-
+### 2️⃣ Khởi chạy server
 ```bash
-pytest app/test/test_api_email.py
+uvicorn app.api.report_api:router --reload
 ```
 
-<br>
-Kết quả test sẽ ở file results.json<br>
+### 3️⃣ Gửi yêu cầu mẫu
+Dùng `curl` hoặc Postman:
+```bash
+curl -X POST "http://127.0.0.1:8000/report/analyze"   -H "Content-Type: application/json"   -d '{"input_data": "Tổng quan quý 1/2024", "excel_base64": "<chuỗi base64>"}'
+```
+
+---
+
+## 📘 Ghi chú
+
+- API này **cần LLM client (Gemini hoặc tương tự)** được cấu hình trong `app.state.gemini_client`.
+- Hàm `remove_outliers` và `visualize_data` là các mô-đun độc lập, có thể tinh chỉnh theo từng bộ dữ liệu.
+- Trong bản chính thức, phần `exec` sẽ được thay bằng cơ chế **safe function registry** để tránh rủi ro bảo mật.
+
+---
+
+## 🧠 Định hướng mở rộng
+
+- Tự động nhận biết đơn vị tiền tệ và chuyển đổi.
+- Hỗ trợ lọc theo khu vực, kênh bán hàng, nhóm sản phẩm.
+- Thêm biểu đồ tương tác (Plotly / Altair).
+- Triển khai mô hình tóm tắt insights bằng LLM thay vì prompt thủ công.
+
+---
+
+📍 **Tác giả:** Truong Bao  
+🕓 **Phiên bản:** Demo 0.1  
+🔗 **Ngôn ngữ:** Python 3.11, FastAPI, Pandas
