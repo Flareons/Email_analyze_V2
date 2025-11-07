@@ -98,7 +98,7 @@ app/
 
 ### 1️⃣ Cài đặt môi trường
 ```bash
-pip install fastapi uvicorn pandas openpyxl
+pip install requirements
 ```
 
 ### 2️⃣ Khởi chạy server
