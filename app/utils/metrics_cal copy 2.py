@@ -1,5 +1,5 @@
 import pandas as pd
-from app.models.date_extraction import Date_Model
+from app.models.query_extraction import Date_Model
 
 def metrics_calculate(df: pd.DataFrame, date_info: Date_Model) -> dict:
     """

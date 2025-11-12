@@ -11,3 +11,4 @@ pymysql
 cryptography
 openpyxl
 matplotlib
+pandasql

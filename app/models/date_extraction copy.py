@@ -12,7 +12,9 @@ def date_extraction(user_request: str, date_range:list, client) -> dict:
     Dựa trên thông tin yêu cầu của người dùng, schema, column, metadata và khoảng thời gian của dữ liệu
     Hãy chọn ra khoảng thời gian cần lấy trong dữ liệu theo yêu cầu đó
     Đồng thời hãy trả về ý định của người dùng trong câu hỏi xem muốn so sánh tổng thể hay so sánh từng sản phẩm theo thời gian với 1 từ ngắn gọn là ["Tổng thể", "Theo sản phẩm"]
-
+    
+    Nếu yêu cầu của người dùng không có thông tin thời gian cụ thể, chỉ lấy quý gần nhất
+    
     Khoảng thời gian:
     {date_range[0]} đến {date_range[-1]}
 

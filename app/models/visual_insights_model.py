@@ -77,7 +77,7 @@ def visualize_data(user_request: str, metrics: str, client) -> dict:
             "temperature":0.0
         }
     )
-    print(response)
+    # print(response)
     return response.parsed
 
 #Xử lý sao cho AI flexible nhất, không giới hạn quá data
